@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import '../static/css/AdminIndex.css'
+import {Route} from 'react-router-dom'
+import AddArticle from './AddArticle'
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -47,13 +49,18 @@ function AdminIndex() {
           </Menu>
         </Sider>
         <Layout>
-          <Header style={{ background: '#fff', padding: 0 }} />
+
           <Content style={{ margin: '0 16px' }}>
             <Breadcrumb style={{ margin: '16px 0' }}>
               <Breadcrumb.Item>后台管理系统</Breadcrumb.Item>
               <Breadcrumb.Item>工作台</Breadcrumb.Item>
             </Breadcrumb>
-            <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>JSPANG的博客管理系统</div>
+            <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+              <div>
+                <Route path="/index/" exact component={AddArticle}></Route>
+              </div>
+              JSPANG的博客管理系统
+            </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
         </Layout>
