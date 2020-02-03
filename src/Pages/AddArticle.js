@@ -87,7 +87,7 @@ function AddArticle() {
                             <Button type="primary" size="large">发布文章</Button>
                             <br />
                         </Col>
-                        <Col span="24">
+                        <Col span={24}>
                             <br/>
                             <TextArea
                                 rows={4}
