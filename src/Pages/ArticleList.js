@@ -2,10 +2,28 @@ import React, {useState, useEffect} from 'react'
 import {List, Row, Col, Modal, message,Button} from 'antd'
 import axios from 'axios'
 import servicePath from '../config/apiUrl'
+import '../static/css/ArticleList.css'
 const {confirm} = Modal
 
 function ArticleList(props) {
     const [list, setList] = useState([])
+
+    useEffect(()=>{
+        getList()
+    }, [])
+
+    const getList = () => {
+        axios({
+            methods: 'get',
+            url: servicePath.getArticleList,
+            withCredentials: true,
+        }).then(
+            res=>{
+                setList(res.data.list)
+            }
+        )
+    }
+
 
     return (
         <div>
