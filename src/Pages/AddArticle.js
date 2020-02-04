@@ -88,7 +88,36 @@ function AddArticle(props) {
             message.error('发布日期不能为空')
             return false
         }
-        message.success('检验通过')
+        
+        let dataProps = {}
+        dataProps.type_id = selectedType 
+        dataProps.title = articleTitle
+        dataProps.article_content =articleContent
+        dataProps.introduce =introducemd
+        let datetext= showDate.replace('-','/') //把字符串转换成时间戳
+        dataProps.addTime = datetext
+        // (new Date(datetext).getTime())/1000
+
+        if(articleId==0) {
+            dataProps.view_count = 0
+            axios({
+                method: 'post',
+                url: servicePath.addArticle,
+                data: dataProps,
+                withCredentials: true
+            }).then(
+                res => {
+                    setArticleId(res.data.insertId)
+                    if(res.data.isSuccess) {
+                        message.success('文章保存成功')
+                    } else {
+                        message.error('文章保存失败')
+                    }
+                } 
+            )
+
+        }
+
     }
 
 
