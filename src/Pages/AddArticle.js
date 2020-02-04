@@ -116,6 +116,22 @@ function AddArticle(props) {
                 } 
             )
 
+        }else{
+            dataProps.id = articleId
+            axios({
+                method:'post',
+                url: servicePath.updateArticle,
+                data: dataProps,
+                withCredentials: true
+            }).then(
+                res => {
+                    if(res.data.isSuccess) {
+                        message.success('文章保存成功')
+                    }else{
+                        message.error('保存失败')
+                    }
+                }
+            )
         }
 
     }
