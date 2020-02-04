@@ -24,6 +24,25 @@ function ArticleList(props) {
         )
     }
 
+    // 删除文章的方法
+    const delArticle = (id) => {
+        confirm({
+            title: '确定要删除这篇博客文章吗？',
+            content: '如果你点击ok按钮，文章将永远被删除，无法恢复',
+            onOk(){
+                axios(servicePath.delArticle+id,{withCredentials: true}).then(
+                    res => {
+                        message.success('文章删除成功')
+                        getList()
+                    }
+                )
+            },
+            onCancel(){
+                message.success('文章没有任何变化')
+            } 
+        })
+    }
+
 
     return (
         <div>
@@ -66,7 +85,7 @@ function ArticleList(props) {
                             </Col>
                             <Col span={4}>
                               <Button type="primary">修改</Button>&nbsp;
-                              <Button >删除 </Button>
+                              <Button onClick={()=>{delArticle(item.id)}}>删除 </Button>
                             </Col>
                         </Row>
                     </List.Item>
